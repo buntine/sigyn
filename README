@@ -1,0 +1,12 @@
+
+  ----------------------------------------------------
+  SIGYN
+  A simple server for ensuring website uptime.
+  ----------------------------------------------------
+
+  Sigyn will keep track of your websites by alerting administrators to downtime via email.
+
+  * Based on Twisted framework
+  * Simple configuration model
+  * Alert escalation if site remains down
+  * Good logging

@@ -6,10 +6,10 @@ from lib import sigyn, config
 
 # Read main config.
 conf = config.Conf()
-main = conf.read("main")
+conf.read("Main")
 
 # Start event loop.
 s = sigyn.Sigyn()
 t = task.LoopingCall(s.check)
-t.start(10)
+t.start(conf.get("interval", 60))
 reactor.run()

@@ -4,4 +4,3 @@ class Sigyn:
 
     def check(self):
         print "Running"
-

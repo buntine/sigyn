@@ -1,1 +1,1 @@
-__all__ = ["sigyn"]
+__all__ = ["sigyn", "config"]

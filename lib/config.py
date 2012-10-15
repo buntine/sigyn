@@ -18,19 +18,33 @@ class Conf:
              self.section = None
 
     def get(self, option, default=None):
+        '''Get's a value from the current section.'''
         if self.section is not None and self.has_option(option):
             return self.conf.getint(self.section, option)
         else:
             return default
 
     def sites(self):
-        pass
+        '''Returns a list of websites in the config file.'''
+        site_list = self.conf.sections()
+        site_list.remove("Main")
 
-    def add_site(self, details):
-        pass
+        return site_list
+
+    def add_site(self, name, details):
+        if not self.has_section(name):
+            self.conf.add_section(name)
+
+            # Set values in details.
+            for k in details:
+                self.conf.set(self.section, k, details[k])
+
+            return True
+        else:
+            return False
 
     def remove_site(self, section):
-        pass
+        return self.conf.remove_section(section)
 
     def has_option(self, option):
         return self.conf.has_option(self.section, option)

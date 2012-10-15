@@ -11,6 +11,10 @@ class Conf:
         self.conf.read(path)
         self.set_section(section)
 
+    def save(self):
+        path = os.path.join(os.path.dirname(__file__), "..", "config", "config.cfg")
+        self.conf.write(open(path, 'wb'))
+
     def set_section(self, section):
         if section is not None and self.has_section(section):
             self.section = section
@@ -37,7 +41,9 @@ class Conf:
 
             # Set values in details.
             for k in details:
-                self.conf.set(self.section, k, details[k])
+                self.conf.set(name, k, details[k])
+
+            self.save()
 
             return True
         else:

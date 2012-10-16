@@ -23,7 +23,7 @@ class Conf:
              self.section = None
 
     def get(self, option, default=None):
-        '''Get's a value from the current section.'''
+        '''Returns a value from the current section.'''
         if self.section is not None and self.has_option(option):
             return self.conf.getint(self.section, option)
         else:

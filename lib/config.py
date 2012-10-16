@@ -29,8 +29,8 @@ class Conf:
         else:
             return default
 
-    def options(self):
-        return self.conf.options(self.section)
+    def items(self):
+        return self.conf.items(self.section)
 
     def sites(self):
         '''Returns a list of websites in the config file.'''

@@ -11,5 +11,5 @@ class Sigyn:
         for site in self.sites:
             self.conf.set_section(site)
 
-            ws = website.Website(site, self.conf.options())
+            ws = website.Website(site, self.conf.items())
             ws.check()

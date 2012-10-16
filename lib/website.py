@@ -1,6 +1,7 @@
 class Website:
-    def __init__(self, domain):
+    def __init__(self, domain, config):
         self.domain = domain
+        self.config = config
 
     def check(self):
-        pass
+        print "Checking " + self.domain

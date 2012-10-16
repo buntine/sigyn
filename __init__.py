@@ -6,7 +6,7 @@ from lib import sigyn, config
 
 # Read main config.
 conf = config.Conf()
-conf.read("Main")
+conf.read("main")
 
 # Start event loop.
 s = sigyn.Sigyn()

@@ -1,19 +1,20 @@
 import ConfigParser, os
 
 class Conf:
-    def __init__(self):
+    def __init__(self, do_read=False):
         self.conf = ConfigParser.ConfigParser()    
         self.section = None
 
+        if do_read:
+            self.read()
+
     def read(self, section=None):
         '''Reads the config file and optionally sets the section'''
-        path = os.path.join(os.path.dirname(__file__), "..", "config", "config.cfg")
-        self.conf.read(path)
+        self.conf.read(self.__path())
         self.set_section(section)
 
     def save(self):
-        path = os.path.join(os.path.dirname(__file__), "..", "config", "config.cfg")
-        self.conf.write(open(path, 'wb'))
+        self.conf.write(open(self.__path(), 'wb'))
 
     def set_section(self, section):
         if section is not None and self.has_section(section):
@@ -28,10 +29,13 @@ class Conf:
         else:
             return default
 
+    def options(self):
+        return self.conf.options(self.section)
+
     def sites(self):
         '''Returns a list of websites in the config file.'''
         site_list = self.conf.sections()
-        site_list.remove("Main")
+        site_list.remove("main")
 
         return site_list
 
@@ -57,3 +61,6 @@ class Conf:
 
     def has_section(self, section):
         return self.conf.has_section(section)
+
+    def __path(self):
+        return os.path.join(os.path.dirname(__file__), "..", "config", "config.cfg")

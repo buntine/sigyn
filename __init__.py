@@ -11,5 +11,5 @@ conf.read("main")
 # Start event loop.
 s = sigyn.Sigyn()
 t = task.LoopingCall(s.check)
-t.start(conf.get("interval", 60))
+t.start(conf.getint("interval", 60))
 reactor.run()

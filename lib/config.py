@@ -22,10 +22,19 @@ class Conf:
         else:
              self.section = None
 
-    def get(self, option, default=None):
+    def getint(self, option, default=None):
+        return self.__get(option, self.conf.getint, default)
+
+    def getboolean(self, option, default=None):
+        return self.__get(option, self.conf.getboolean, default)
+
+    def getfloat(self, option, default=None):
+        return self.__get(option, self.conf.getfloat, default)
+
+    def __get(self, option, func, default=None):
         '''Returns a value from the current section.'''
         if self.section is not None and self.has_option(option):
-            return self.conf.getint(self.section, option)
+            return func(self.section, option)
         else:
             return default
 

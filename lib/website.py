@@ -17,7 +17,7 @@ class Website:
 
             if not resp.status == 200:
                 self.logger.warning("%s returned %i" % (self.config["url"], resp.status))
-                self.__send_notifications()
+                self.__send_notifications(resp.status)
             else:
                 self.logger.info("%s returned 200" % self.config["url"])
         except:
@@ -32,5 +32,5 @@ class Website:
         self.logger = logging.getLogger(self.domain)
         self.logger.addHandler(handler)
 
-    def __send_notifications(cause="down"):
+    def __send_notifications(status=0):
         pass

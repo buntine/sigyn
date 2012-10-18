@@ -8,12 +8,21 @@ class Website:
         self.__create_logger()
 
     def check(self):
-        self.logger.info("Checking " + self.domain)
+        self.logger.info("Checking %s" % self.domain)
 
-        conn = httplib.HTTPConnection(self.domain)
-        req = conn.request("GET", self.config["url"])
-        resp = conn.getresponse()
-        self.logger.info("Returned HTTP status " + str(resp.status))
+        try:
+            conn = httplib.HTTPConnection(self.domain)
+            req = conn.request("GET", self.config["url"], self.config["timeout"])
+            resp = conn.getresponse()
+
+            if not resp.status == 200:
+                self.logger.warning("%s returned %i" % (self.config["url"], resp.status))
+                self.__send_notifications()
+            else:
+                self.logger.info("%s returned 200" % self.config["url"])
+        except:
+            self.logger.warning("%s cannot be resolved!" % self.domain)
+            self.__send_notifications()
 
     def __create_logger(self):
         handler = logging.FileHandler('logs/' + self.domain + ".log")
@@ -22,3 +31,6 @@ class Website:
 
         self.logger = logging.getLogger(self.domain)
         self.logger.addHandler(handler)
+
+    def __send_notifications(cause="down"):
+        pass

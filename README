@@ -7,6 +7,7 @@
   Sigyn will keep track of your websites by alerting administrators to downtime via email.
 
   * Based on Twisted framework
-  * Simple configuration model
+  * Simple configuration for multiple web sites
   * Alert escalation if site remains down
   * Good logging
+  * HTTPS supprt, redirects followed

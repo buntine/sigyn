@@ -1,4 +1,13 @@
 
+###############################################
+# SIGYN                                       #
+# Version 0.1                                 #
+# Andrew Buntine                              #
+#                                             #
+# Sigyn warns of website downtime by alerting #
+# stakeholders via email.                     #
+###############################################
+
 from twisted.internet import task
 from twisted.internet import reactor
 

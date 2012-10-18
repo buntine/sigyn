@@ -16,11 +16,11 @@ class Website:
             self.__send_notifications()
             return
 
-        if not resp.status == 200:
+        if self.__should_notify(resp.status):
             self.logger.warning("%s returned %i" % (self.config["url"], resp.status))
             self.__send_notifications(resp.status)
         else:
-            self.logger.info("%s returned 200" % self.config["url"])
+            self.logger.info("%s returned %i" % (self.config["url"], resp.status))
 
     def __make_request(self):
         try:
@@ -44,3 +44,8 @@ class Website:
 
     def __send_notifications(self, status=0):
         pass
+
+    def __should_notify(self, status):
+        whitelist = self.config["notify"].split(" ")
+
+        return status in map(lambda x: int(x), whitelist)

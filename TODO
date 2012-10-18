@@ -1,5 +1,4 @@
 - Only notify on status codes app is configured for.
-- Integrate HTTPS.
-  - And maybe check certificates.
+- Maybe check certificates for SSL.
 - Follow 301/302 recursively.
 - Do HTTP work in parallel.

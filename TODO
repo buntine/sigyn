@@ -1,4 +1,7 @@
-- Only notify on status codes app is configured for.
+*- Only notify on status codes app is configured for.
+*- Add sqlite3 database
+  - Keep track of when site was down
+  - Keep track of number subsequent failed attempts
 - Maybe check certificates for SSL.
 - Follow 301/302 recursively.
 - Do HTTP work in parallel.

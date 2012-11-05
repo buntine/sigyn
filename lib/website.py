@@ -1,5 +1,6 @@
 import logging
 import httplib
+from lib import database
 
 class Website:
     def __init__(self, domain, config):
